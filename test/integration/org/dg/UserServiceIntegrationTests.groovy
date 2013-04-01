@@ -6,11 +6,11 @@ import org.junit.Test
 class UserServiceIntegrationTests extends DgScoreIntegrationTestCase {
     UserService userService
 
-    User user1
+    AppUser user1
 
     @Before
     void setUp() {
-        user1 = User.findByUsername('user1')
+        user1 = AppUser.findByUsername('user1')
     }
 
     @Test

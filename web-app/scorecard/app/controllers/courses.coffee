@@ -17,7 +17,8 @@ class Courses extends Spine.Controller
 		Course.bind 'refresh', @list
 		@scorecard = new Scorecards({el:$("#scorecard")})
 		
-	list: (filter)->
+#	list: (filter)->
+  list: ->
 		#if filter
 		#else
 		courses = Course.all()

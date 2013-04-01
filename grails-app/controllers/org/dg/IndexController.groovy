@@ -5,7 +5,7 @@ import grails.plugins.springsecurity.Secured
 @Secured('isAuthenticated()')
 class IndexController {
 
-    def index() {
+    def index = {
         redirect(uri: "/scorecard/")
     }
 }

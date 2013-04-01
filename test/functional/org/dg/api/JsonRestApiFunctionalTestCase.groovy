@@ -6,11 +6,11 @@ import org.codehaus.groovy.grails.web.json.JSONArray
 
 abstract class JsonRestApiFunctionalTestCase extends FunctionalTestCase {
     JSONObject getParsedJsonSingleElement() {
-        grails.converters.JSON.parse(response.contentAsString)
+        (JSONObject) grails.converters.JSON.parse((String) response.contentAsString)
     }
 
     JSONArray getParsedJsonArray() {
-        grails.converters.JSON.parse(response.contentAsString)
+        (JSONArray) grails.converters.JSON.parse((String) response.contentAsString)
     }
 
     void doJsonGet(String url, String username = "user1", String password = "pass1") {
@@ -42,14 +42,15 @@ abstract class JsonRestApiFunctionalTestCase extends FunctionalTestCase {
         }
     }
 
-    void doJsonDelete(String url, String username = "user1", String password = "pass1") {
-        delete(url) {
-            headers['Accept'] = 'application/json'
-            headers["Authorization"] = createBasicAuth(username, password)
-        }
-    }
+//    MLF: Not needed yet
+//    void doJsonDelete(String url, String username = "user1", String password = "pass1") {
+//        delete(url) {
+//            headers['Accept'] = 'application/json'
+//            headers["Authorization"] = createBasicAuth(username, password)
+//        }
+//    }
 
-    String createBasicAuth(String username, String password) {
+    static String createBasicAuth(String username, String password) {
         String nonEncodedAuth = "${username}:${password}".toString()
 
         String basicAuthEncoded = "Basic " + nonEncodedAuth.bytes.encodeBase64().toString()

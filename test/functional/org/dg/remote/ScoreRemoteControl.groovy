@@ -8,7 +8,7 @@ class ScoreRemoteControl {
     RemoteControl remote = new RemoteControl()
 
     List<Score> findScoresForPlayer(String username) {
-        remote {
+        (List<Score>) remote {
             AppUser player = AppUser.findByUsername(username)
 
             if (player) {
@@ -20,7 +20,7 @@ class ScoreRemoteControl {
     }
 
     Score findScoreForPlayer(String username, String notes) {
-        remote {
+        (Score) remote {
             AppUser player = AppUser.findByUsername(username)
 
             if (player) {

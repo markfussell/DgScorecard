@@ -39,7 +39,7 @@ class LoginController {
         }
     }
 
-    def loginGoogle() {
+    def loginGoogle = {
         String openIdCheckUri = "${request.contextPath}/j_spring_openid_security_check?openid_identifier=https://www.google.com/accounts/o8/id"
 
         redirect(uri: openIdCheckUri)
@@ -98,7 +98,7 @@ class LoginController {
      */
     def authfail = {
 
-        def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
+//        def username = session[UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY]
         String msg = ''
         def exception = session[WebAttributes.AUTHENTICATION_EXCEPTION]
         if (exception) {
@@ -142,7 +142,7 @@ class LoginController {
         render([error: 'access denied'] as JSON)
     }
 
-    def openIdCreateAccount() {
+    def openIdCreateAccount = {
         def config = SpringSecurityUtils.securityConfig
 
         String openId = session[OpenIdAuthenticationFailureHandler.LAST_OPENID_USERNAME]

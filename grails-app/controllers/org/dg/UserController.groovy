@@ -7,7 +7,7 @@ import grails.plugins.springsecurity.Secured
 class UserController {
     def userService
 
-    def info() {
+    def info = {
         def currentUser = userService.currentUser
 
         if (currentUser) {
@@ -17,7 +17,7 @@ class UserController {
         }
     }
 
-    def search(String query) {
+    def search = {String query ->
         if (!query && params['term']) {
             query = params['term']
         }

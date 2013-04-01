@@ -37,7 +37,7 @@ class ScoreServiceIntegrationTests extends DgScoreIntegrationTestCase {
 
     @Test
     void whenScoreForOtherExistingUserShouldCreateScore() {
-        User user2 = User.findByUsername('user2')
+        AppUser user2 = AppUser.findByUsername('user2')
 
         def params = [score: 52, notes: "New score for user 2", 'course.id': course.id, playerEmail: user2.email]
 
@@ -56,7 +56,7 @@ class ScoreServiceIntegrationTests extends DgScoreIntegrationTestCase {
         def newScore = scoreService.create(params)
         assert !newScore.errors?.allErrors
 
-        User newUser = User.findByEmail(otherUserEmail)
+        AppUser newUser = AppUser.findByEmail(otherUserEmail)
         assert newUser
         assert !newUser.enabled
 

@@ -38,7 +38,7 @@ class ScoreController {
 
     def scoreService
 
-    def list() {
+    def list = {
         def scores = scoreService.findScoresForCurrentUser()
 
         withFormat {
@@ -51,7 +51,7 @@ class ScoreController {
         }
     }
 
-    def save() {
+    def save = {
         Score score = scoreService.create(params)
 
         if (!score.hasErrors()) {
@@ -79,7 +79,7 @@ class ScoreController {
         }
     }
 
-    def inProgress() {
+    def inProgress = {
         def inProgressScores = scoreService.findInProgressScores()
 
         render inProgressScores as JSON

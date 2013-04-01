@@ -62,6 +62,7 @@ grails.project.dependency.resolution = {
 
         test ":functional-test:1.3-RC1"
         test ":remote-control:1.2"
+        test ":code-coverage:1.2.6"
 
         compile(':heroku:1.0.1') {
             exclude 'database-session'

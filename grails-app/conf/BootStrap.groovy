@@ -4,7 +4,12 @@ import org.dg.Course
 import org.dg.Score
 import org.dg.AppUser
 
+@SuppressWarnings("GroovyUnusedAssignment")
+@SuppressWarnings('UnusedVariable')
 class BootStrap {
+//@SuppressWarnings("GroovyUnusedAssignment")
+//@SuppressWarnings("all")
+
 
     def init = { servletContext ->
         boolean emptyDatabase = AppUser.count() == 0
@@ -15,7 +20,7 @@ class BootStrap {
 
             Course course1 = new Course(name: "Course 1", holes: 18, par: 54).save(failOnError: true)
 
-            Score user1Course1Score = new Score(score: 55, course: course1, player: user1).save(failOnError: true)
+            Score ignore = new Score(score: 55, course: course1, player: user1).save(failOnError: true) // NOSONAR
             Score user1Course1InProgressScore = new Score(score: 56, course: course1, player: user1, inProgress: true, notes: "In progress score").save(failOnError: true)
             Score user1Course1FinishedScore = new Score(score: 56, course: course1, player: user1, inProgress: false, notes: "Finished score").save(failOnError: true)
 
@@ -34,11 +39,11 @@ class BootStrap {
         if (DATABASE_URL) {
             try {
                 PostgresqlServiceInfo info = new PostgresqlServiceInfo()
-                println "nPostgreSQL service ($DATABASE_URL): url='$info.url', " +
+                log.info "nPostgreSQL service ($DATABASE_URL): url='$info.url', " +
                         "user='$info.username', password='$info.password'n"
             }
             catch (e) {
-                println "Error occurred parsing DATABASE_URL: $e.message"
+                log.info "Error occurred parsing DATABASE_URL: $e.message"
             }
         }
     }
